@@ -8,9 +8,6 @@ library(plyr)
 
 #----------------------------- 1.1.1 ---------------------------
 
-#Datos categoricos (para imprimirlos solo escribir variable,
-#y correr programa)
-
 c_hospital = count(data_base["hospital"])
 c_urban = count(data_base["urban"])
 c_alcohol = count(data_base["alcohol"])
@@ -21,6 +18,15 @@ c_bweight = count(data_base["bweight"])
 c_race = count(data_base["race"])
 c_nsibs = count(data_base["nsibs"])
 
+#Tablas de frecuencias relativas
+prop.table(table(c_hospital))
+prop.table(table(c_urban))
+prop.table(table(c_alcohol))
+prop.table(table(c_smoke))
+prop.table(table(c_region))
+prop.table(table(c_bweight))
+prop.table(table(c_race))
+prop.table(table(c_nsibs))
 
 #barplot
 
@@ -36,20 +42,43 @@ nsibs_fq = barplot(c_nsibs$freq, names.arg = c_nsibs$nsibs, main = "Frequency Ta
 
 #---------------------------------------- 1.1.2 ----------------------
 
-#Datos cuantitativos (Histogramas)
+#Datos cuantitativos 
 
+#Tablas de frecuencias absolutas
+table(chldage)
+table(mthage)
+table(education)
+table(wmonth)
+table(sfmonth)
+table(agepn)
 
-chldage_hist = hist(chldage, prob = T) 
+#Tablas de frecuencias relativas
+prop.table(table(chldage))
+prop.table(table(mthage))
+prop.table(table(education))
+prop.table(table(wmonth))
+prop.table(table(sfmonth))
+prop.table(table(agepn))
+
+#Histogramas de frecuencia Relativa
+
+chldage_hist = hist(col=23,chldage,freq= FALSE, prob = T,main="chldage",xlab="edad ingresado (meses)",ylab="freq. relativa") 
+lines(density(chldage),col="black",lty=3,lwd=2)
 #Nose que forma podría ser 
-mthage_hist = hist(mthage, prob = T)
+mthage_hist = hist(col=2,mthage,freq= FALSE, prob = T,main="mthdage",xlab="edad (años)",ylab="freq. relativa")
+lines(density(mthage),col="black",lty=3,lwd=2)
 #normal claramente
-education_hist = hist(education, prob = T)
+education_hist = hist(col=3,education,freq= FALSE, prob = T,main="Education",xlab="años de educación",ylab="freq. relativa")
+lines(density(education),col="black",lty=3,lwd=2)
 #normal
-wmonth_hist = hist(wmonth, prob = T)
+wmonth_hist = hist(col=4,wmonth,freq= FALSE, prob = T,main="wmonth",xlab="edad de destete (meses)",ylab="freq. relativa")
+lines(density(wmonth),col="black",lty=3,lwd=2)
 #exponencial negativa ?
-sfmonth_hist = hist(sfmonth, prob = T)
+sfmonth_hist = hist(col=5,sfmonth,freq= FALSE, prob = T,main="sfmonth",xlab="edad comida solida intr.(meses)",ylab="freq. relativa")
+lines(density(sfmonth),col="black",lty=3,lwd=2)
 #exponencial negativa ?
-agepn_hist = hist(agepn, prob = T)
+agepn_hist = hist(col=6,agepn,freq= FALSE, prob = T,main="agepn",xlab="tiempo hospital",ylab="freq. relativa")
+lines(density(agepn),col="black",lty=3,lwd=2)
 # ni idea 
 
 
@@ -107,5 +136,3 @@ mytable
 #Scatter plots
 
 plot(chldage, agepn, main="Scatterplot Example")
-
-
